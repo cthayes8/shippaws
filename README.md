@@ -1,4 +1,14 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# ShipPaws
+
+ShipPaws is a pet transportation platform that connects pet owners with verified transporters. This Next.js application provides a comprehensive onboarding system for transporters and a landing page for the service.
+
+## Features
+
+- **Transporter Onboarding**: Multi-step application process for pet transporters
+- **Document Management**: Upload and verification system for licenses and certifications
+- **Responsive Design**: Mobile-optimized interface
+- **Form Validation**: Real-time validation and error handling
+- **Progress Tracking**: Visual step indicator for application progress
 
 ## Getting Started
 
@@ -19,6 +29,12 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 
 This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+
+## Project Structure
+
+- `/transporters` - Transporter landing page
+- `/transporters/onboard` - Multi-step onboarding form
+- `/transporters/onboard/components/` - Individual form step components
 
 ## Learn More
 
