@@ -1,8 +1,10 @@
 'use client';
 
 import Image from "next/image";
-import QuoteRequestForm from "@/components/QuoteRequestForm";
 import Header from "@/components/Header";
+import QuoteRequestForm from "@/components/QuoteRequestForm";
+import HowItWorksSection from "@/components/HowItWorksSection";
+import TestimonialsSection from "@/components/TestimonialsSection";
 
 export default function Home() {
   return (
@@ -17,11 +19,14 @@ export default function Home() {
           playsInline
           className="hidden md:block absolute top-0 left-0 w-full h-full object-cover z-0"
         >
-          <source src="/video_alt.mp4" type="video/mp4" />
+          <source src="/Copy of SP video 12 (3).mp4" type="video/mp4" />
         </video>
         
+        {/* Dark overlay for better text contrast */}
+        <div className="absolute inset-0 bg-gradient-to-r from-black/30 to-transparent z-10"></div>
+        
         {/* Mobile Background Pattern */}
-        <div className="md:hidden absolute inset-0 opacity-10">
+        <div className="md:hidden absolute inset-0 opacity-10 z-5">
           <div className="absolute inset-0" style={{
             backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.4'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
           }}></div>
@@ -32,111 +37,115 @@ export default function Home() {
           {/* Navigation */}
           <Header />
 
-          {/* Hero Section */}
-          <div className="flex flex-col items-center justify-start min-h-[calc(100vh-120px)] px-4 md:px-8 pt-20 md:pt-40">
-            {/* Quote Form - Desktop */}
-            <div className="hidden md:block w-full max-w-5xl">
-              <QuoteRequestForm />
-            </div>
-
-            {/* Quote Form - Mobile */}
-            <div className="md:hidden bg-white rounded-2xl shadow-2xl w-full max-w-md p-6">
-              <div className="flex justify-center mb-2">
-                <Image
-                  src="/SP - LOGO 2.png"
-                  alt="Ship Paws"
-                  width={150}
-                  height={75}
-                  className="object-contain"
-                />
+          {/* Hero Section - Shorter like Hirezy */}
+          <div className="relative flex flex-col justify-center min-h-[60vh] px-4 md:px-8">
+            {/* Main Headline - Left positioned */}
+            <div className="text-left max-w-3xl mb-16">
+              <div className="text-panel space-y-4">
+                <h1 className="text-white leading-none drop-shadow-lg font-inter">
+                  <span className="block text-8xl md:text-9xl lg:text-[10rem] font-black tracking-tight" style={{textShadow: '3px 3px 6px rgba(0,0,0,0.9)', fontFamily: 'Inter, Montserrat, sans-serif'}}>Ship Your Pet Safely</span>
+                  <span className="block text-5xl md:text-6xl lg:text-7xl font-black text-red-400/80 tracking-tight" style={{fontFamily: 'Inter, Montserrat, sans-serif'}}>Coast to Coast</span>
+                </h1>
+                <p className="text-white text-3xl md:text-4xl mt-4 max-w-2xl font-bold" style={{textShadow: '2px 2px 4px rgba(0,0,0,0.8)', fontFamily: 'Inter, Montserrat, sans-serif'}}>
+                  Professional transporters you can trust
+                </p>
               </div>
-              <p className="text-red-500 font-bold text-lg mb-6 text-center">Trusted Pet Transportation Nationwide</p>
+            </div>
+            
+            {/* Quote Bar inside Hero - Centered and Lower */}
+            <div className="absolute -bottom-32 left-1/2 transform -translate-x-1/2 w-full max-w-5xl px-4">
               <QuoteRequestForm />
             </div>
           </div>
         </div>
       </div>
 
-      {/* About Us Section */}
-      <section id="about" className="py-12 md:py-20 px-4 md:px-8 bg-white">
-        <div className="max-w-6xl mx-auto">
-          <div className="text-center mb-8 md:mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4 md:mb-6 text-gray-800">Connecting Pets with Trusted Transportation</h2>
-            <p className="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto">
-              Ship Paws is the premier marketplace for pet transportation, connecting pet owners with verified, professional pet transporters across the country.
-            </p>
-          </div>
-          
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8 md:mb-16">
-            <div className="text-center">
-              <div className="mb-4">
-                <svg className="w-12 md:w-16 h-12 md:h-16 mx-auto text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                </svg>
-              </div>
-              <h3 className="text-lg md:text-xl font-semibold mb-3">Verified Transporters</h3>
-              <p className="text-gray-600">Every transporter is thoroughly vetted, licensed, and insured to ensure your pet&apos;s safety.</p>
+
+      {/* Combined Value Proposition Section */}
+      <section className="py-20 bg-white">
+        <div className="max-w-7xl mx-auto px-4 md:px-8">
+          {/* Trust Stats */}
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-16">
+            <div className="bg-gradient-to-br from-red-50 to-pink-50 rounded-2xl p-6 text-center hover:shadow-lg transition-all duration-300 border border-red-100">
+              <div className="text-3xl md:text-4xl font-black text-red-600 mb-2" style={{fontFamily: 'Inter, Montserrat, sans-serif'}}>500+</div>
+              <div className="text-sm font-medium text-gray-700">Verified Transporters</div>
             </div>
-            <div className="text-center">
-              <div className="mb-4">
-                <svg className="w-12 md:w-16 h-12 md:h-16 mx-auto text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                </svg>
-              </div>
-              <h3 className="text-lg md:text-xl font-semibold mb-3">Transparent Pricing</h3>
-              <p className="text-gray-600">Compare quotes from multiple transporters to find the best value for your pet&apos;s journey.</p>
+            <div className="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-2xl p-6 text-center hover:shadow-lg transition-all duration-300 border border-blue-100">
+              <div className="text-3xl md:text-4xl font-black text-blue-600 mb-2" style={{fontFamily: 'Inter, Montserrat, sans-serif'}}>10k+</div>
+              <div className="text-sm font-medium text-gray-700">Happy Pets</div>
             </div>
-            <div className="text-center">
-              <div className="mb-4">
-                <svg className="w-12 md:w-16 h-12 md:h-16 mx-auto text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
-                </svg>
-              </div>
-              <h3 className="text-lg md:text-xl font-semibold mb-3">Peace of Mind</h3>
-              <p className="text-gray-600">Real-time tracking and regular updates throughout your pet&apos;s journey.</p>
+            <div className="bg-gradient-to-br from-green-50 to-emerald-50 rounded-2xl p-6 text-center hover:shadow-lg transition-all duration-300 border border-green-100">
+              <div className="text-3xl md:text-4xl font-black text-green-600 mb-2" style={{fontFamily: 'Inter, Montserrat, sans-serif'}}>4.9★</div>
+              <div className="text-sm font-medium text-gray-700">Average Rating</div>
+            </div>
+            <div className="bg-gradient-to-br from-purple-50 to-violet-50 rounded-2xl p-6 text-center hover:shadow-lg transition-all duration-300 border border-purple-100">
+              <div className="text-3xl md:text-4xl font-black text-purple-600 mb-2" style={{fontFamily: 'Inter, Montserrat, sans-serif'}}>24/7</div>
+              <div className="text-sm font-medium text-gray-700">Support</div>
             </div>
           </div>
 
-          <div className="bg-gray-50 rounded-2xl p-6 md:p-8 text-center">
-            <h3 className="text-xl md:text-2xl font-semibold mb-4">Why Choose Ship Paws?</h3>
-            <p className="text-gray-600 max-w-2xl mx-auto">
-              Whether you&apos;re relocating, bringing home a new pet, or need specialized transport services, 
-              Ship Paws makes it easy to find reliable, caring professionals who will treat your pet like family. 
-              Our platform ensures a stress-free experience for both you and your beloved companion.
-            </p>
+          {/* Main Value Proposition */}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <div>
+              <h2 className="text-4xl md:text-5xl font-black mb-6 text-gray-900" style={{fontFamily: 'Inter, Montserrat, sans-serif'}}>
+                Your Pet's Journey, 
+                <span className="text-red-500"> Our Priority</span>
+              </h2>
+              <p className="text-xl text-gray-600 mb-8 leading-relaxed">
+                Ship Paws connects loving pet owners with verified, professional transporters across the country. 
+                Whether you're relocating or bringing home a new family member, we make pet transportation safe, 
+                transparent, and stress-free.
+              </p>
+              
+              {/* Key Benefits */}
+              <div className="space-y-4">
+                <div className="flex items-start space-x-4">
+                  <div className="w-6 h-6 rounded-full bg-red-500 flex items-center justify-center flex-shrink-0 mt-1">
+                    <svg className="w-3 h-3 text-white" fill="currentColor" viewBox="0 0 20 20">
+                      <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                    </svg>
+                  </div>
+                  <div>
+                    <h4 className="font-bold text-gray-900 mb-1">Verified & Insured Transporters</h4>
+                    <p className="text-gray-600">Every transporter is thoroughly vetted, licensed, and insured.</p>
+                  </div>
+                </div>
+                <div className="flex items-start space-x-4">
+                  <div className="w-6 h-6 rounded-full bg-red-500 flex items-center justify-center flex-shrink-0 mt-1">
+                    <svg className="w-3 h-3 text-white" fill="currentColor" viewBox="0 0 20 20">
+                      <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                    </svg>
+                  </div>
+                  <div>
+                    <h4 className="font-bold text-gray-900 mb-1">Transparent Pricing</h4>
+                    <p className="text-gray-600">Compare quotes and choose the best value for your pet's journey.</p>
+                  </div>
+                </div>
+                <div className="flex items-start space-x-4">
+                  <div className="w-6 h-6 rounded-full bg-red-500 flex items-center justify-center flex-shrink-0 mt-1">
+                    <svg className="w-3 h-3 text-white" fill="currentColor" viewBox="0 0 20 20">
+                      <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                    </svg>
+                  </div>
+                  <div>
+                    <h4 className="font-bold text-gray-900 mb-1">24/7 Support & Tracking</h4>
+                    <p className="text-gray-600">Real-time updates and round-the-clock support for peace of mind.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            {/* Placeholder for future image */}
+            <div className="bg-gradient-to-br from-red-50 to-pink-100 rounded-3xl p-12 text-center border border-red-100">
+              <div className="text-6xl mb-4">🐕‍🦺</div>
+              <p className="text-gray-600 font-medium">Professional pet transportation you can trust</p>
+            </div>
           </div>
         </div>
       </section>
 
       {/* How It Works Section */}
-      <section id="how-it-works" className="py-12 md:py-20 px-4 md:px-8 bg-gray-50">
-        <div className="max-w-6xl mx-auto">
-          <h2 className="text-3xl md:text-4xl font-bold text-center mb-8 md:mb-16 text-gray-800">How It Works</h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div className="text-center">
-              <div className="w-16 md:w-20 h-16 md:h-20 bg-red-500 rounded-full flex items-center justify-center mx-auto mb-4 md:mb-6">
-                <span className="text-white text-xl md:text-2xl font-bold">1</span>
-              </div>
-              <h3 className="text-lg md:text-xl font-semibold mb-4">Get Quotes</h3>
-              <p className="text-gray-600">Enter your origin, destination, and desired dates to receive instant quotes from verified pet transporters.</p>
-            </div>
-            <div className="text-center">
-              <div className="w-16 md:w-20 h-16 md:h-20 bg-red-500 rounded-full flex items-center justify-center mx-auto mb-4 md:mb-6">
-                <span className="text-white text-xl md:text-2xl font-bold">2</span>
-              </div>
-              <h3 className="text-lg md:text-xl font-semibold mb-4">Choose Your Transporter</h3>
-              <p className="text-gray-600">Compare quotes, read reviews, and select the transporter that best fits your needs and budget.</p>
-            </div>
-            <div className="text-center">
-              <div className="w-16 md:w-20 h-16 md:h-20 bg-red-500 rounded-full flex items-center justify-center mx-auto mb-4 md:mb-6">
-                <span className="text-white text-xl md:text-2xl font-bold">3</span>
-              </div>
-              <h3 className="text-lg md:text-xl font-semibold mb-4">Track Your Pet</h3>
-              <p className="text-gray-600">Stay updated with real-time tracking and regular updates throughout your pet&apos;s journey.</p>
-            </div>
-          </div>
-        </div>
-      </section>
+      <HowItWorksSection />
 
       {/* Safety Section */}
       <section id="safety" className="py-12 md:py-20 px-4 md:px-8 bg-white">
@@ -216,60 +225,12 @@ export default function Home() {
       </section>
 
       {/* Testimonials Section */}
-      <section id="testimonials" className="py-12 md:py-20 px-4 md:px-8 bg-gray-50">
-        <div className="max-w-6xl mx-auto">
-          <h2 className="text-3xl md:text-4xl font-bold text-center mb-8 md:mb-16 text-gray-800">What Our Customers Say</h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
-            <div className="bg-white p-6 md:p-8 rounded-xl shadow-lg">
-              <div className="flex items-center mb-4">
-                <div className="flex text-yellow-400">
-                  {[...Array(5)].map((_, i) => (
-                    <svg key={i} className="w-4 md:w-5 h-4 md:h-5 fill-current" viewBox="0 0 20 20">
-                      <path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z" />
-                    </svg>
-                  ))}
-                </div>
-              </div>
-              <p className="text-gray-600 mb-4 text-sm md:text-base">&quot;Ship Paws made moving my dog across the country stress-free. The transporter was professional and sent updates throughout the journey. Highly recommend!&quot;</p>
-              <div className="font-semibold">Sarah M.</div>
-              <div className="text-xs md:text-sm text-gray-500">Los Angeles to New York</div>
-            </div>
-            <div className="bg-white p-6 md:p-8 rounded-xl shadow-lg">
-              <div className="flex items-center mb-4">
-                <div className="flex text-yellow-400">
-                  {[...Array(5)].map((_, i) => (
-                    <svg key={i} className="w-4 md:w-5 h-4 md:h-5 fill-current" viewBox="0 0 20 20">
-                      <path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z" />
-                    </svg>
-                  ))}
-                </div>
-              </div>
-              <p className="text-gray-600 mb-4 text-sm md:text-base">&quot;Excellent service! My cats arrived happy and healthy. The ability to track their journey in real-time gave me peace of mind. Will use again!&quot;</p>
-              <div className="font-semibold">Michael R.</div>
-              <div className="text-xs md:text-sm text-gray-500">Chicago to Miami</div>
-            </div>
-            <div className="bg-white p-6 md:p-8 rounded-xl shadow-lg">
-              <div className="flex items-center mb-4">
-                <div className="flex text-yellow-400">
-                  {[...Array(5)].map((_, i) => (
-                    <svg key={i} className="w-4 md:w-5 h-4 md:h-5 fill-current" viewBox="0 0 20 20">
-                      <path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z" />
-                    </svg>
-                  ))}
-                </div>
-              </div>
-              <p className="text-gray-600 mb-4 text-sm md:text-base">&quot;The quote process was simple and transparent. Our transporter was caring and experienced. Our puppy had a comfortable journey. Thank you Ship Paws!&quot;</p>
-              <div className="font-semibold">Emily T.</div>
-              <div className="text-xs md:text-sm text-gray-500">Seattle to Denver</div>
-            </div>
-          </div>
-        </div>
-      </section>
+      <TestimonialsSection />
 
       {/* Footer */}
       <footer className="bg-gray-800 text-white py-8 md:py-12 px-4 md:px-8">
         <div className="max-w-6xl mx-auto">
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-5 gap-8">
             <div className="text-center md:text-left">
               <Image
                 src="/SP - Logo1.png"
@@ -285,8 +246,15 @@ export default function Home() {
               <ul className="space-y-2 text-gray-400 text-sm">
                 <li><a href="#how-it-works" className="hover:text-white">How It Works</a></li>
                 <li><a href="#safety" className="hover:text-white">Safety</a></li>
-                <li><a href="/transporters" className="hover:text-white">For Transporters</a></li>
                 <li><a href="#" className="hover:text-white">FAQ</a></li>
+              </ul>
+            </div>
+            <div className="text-center md:text-left">
+              <h4 className="font-semibold mb-4">For Transporters</h4>
+              <ul className="space-y-2 text-gray-400 text-sm">
+                <li><a href="/transporters" className="hover:text-white">Become a Transporter</a></li>
+                <li><a href="/transporter-login" className="hover:text-white">Transporter Login</a></li>
+                <li><a href="/dashboard/enhanced" className="hover:text-white">Transporter Dashboard</a></li>
               </ul>
             </div>
             <div className="text-center md:text-left">

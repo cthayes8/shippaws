@@ -1,9 +1,21 @@
 'use client';
 
 import { SignUp } from '@clerk/nextjs';
+import { useEffect, useState } from 'react';
+import Link from 'next/link';
 import Header from '@/components/Header';
+import { Badge } from '@/components/ui/badge';
+import { Heart, Truck } from 'lucide-react';
 
 export default function SignUpPage() {
+  const [selectedUserType, setSelectedUserType] = useState<string | null>(null);
+
+  useEffect(() => {
+    // Get the selected user type from localStorage
+    const userType = localStorage.getItem('selectedUserType');
+    setSelectedUserType(userType);
+  }, []);
+
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Header */}
@@ -16,10 +28,38 @@ export default function SignUpPage() {
         <div className="max-w-md w-full">
           <div className="text-center mb-8">
             <h1 className="text-3xl font-bold text-gray-900 mb-2">
-              Join Ship Paws
+              Create Your Account
             </h1>
+            {selectedUserType && (
+              <div className="flex items-center justify-center gap-2 mb-4">
+                <Badge variant="secondary" className="px-3 py-1">
+                  {selectedUserType === 'customer' ? (
+                    <>
+                      <Heart className="w-4 h-4 mr-1" />
+                      Pet Owner
+                    </>
+                  ) : (
+                    <>
+                      <Truck className="w-4 h-4 mr-1" />
+                      Transporter
+                    </>
+                  )}
+                </Badge>
+                <Link 
+                  href="/get-started" 
+                  className="text-sm text-blue-600 hover:text-blue-800"
+                >
+                  Change
+                </Link>
+              </div>
+            )}
             <p className="text-gray-600">
-              Create your account to get started with pet transportation
+              {selectedUserType === 'customer' 
+                ? 'Create your account to start finding trusted pet transporters' 
+                : selectedUserType === 'transporter'
+                ? 'Create your account to start earning as a pet transporter'
+                : 'Create your account to get started with pet transportation'
+              }
             </p>
           </div>
 
@@ -33,7 +73,7 @@ export default function SignUpPage() {
                   headerSubtitle: 'hidden'
                 }
               }}
-              redirectUrl="/onboarding"
+              redirectUrl="/onboarding/enhanced"
               signInUrl="/sign-in"
               routing="hash"
             />
