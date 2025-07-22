@@ -1,29 +1,10 @@
 'use client';
 
 import Image from "next/image";
-import { useState } from "react";
+import QuoteRequestForm from "@/components/QuoteRequestForm";
+import Header from "@/components/Header";
 
 export default function Home() {
-  const [pickupLocation, setPickupLocation] = useState("");
-  const [deliveryLocation, setDeliveryLocation] = useState("");
-  const [pickupDate, setPickupDate] = useState("");
-  const [deliveryDate, setDeliveryDate] = useState("");
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-
-  const handleGetQuote = () => {
-    // Basic validation
-    if (!pickupLocation || !deliveryLocation || !pickupDate || !deliveryDate) {
-      alert('Please fill in all fields to get a quote.');
-      return;
-    }
-    
-    // Handle quote request - could integrate with a quote system or redirect to a quote page
-    console.log({ pickupLocation, deliveryLocation, pickupDate, deliveryDate });
-    
-    // For now, show a success message
-    alert(`Quote request submitted!\n\nPickup: ${pickupLocation}\nDelivery: ${deliveryLocation}\nPickup Date: ${pickupDate}\nDelivery Date: ${deliveryDate}\n\nWe'll contact you shortly with quotes from verified transporters.`);
-  };
-
   return (
     <>
       {/* Hero Section with Video Background */}
@@ -36,7 +17,7 @@ export default function Home() {
           playsInline
           className="hidden md:block absolute top-0 left-0 w-full h-full object-cover z-0"
         >
-          <source src="/SP video 12.mp4" type="video/mp4" />
+          <source src="/video_alt.mp4" type="video/mp4" />
         </video>
         
         {/* Mobile Background Pattern */}
@@ -49,130 +30,13 @@ export default function Home() {
         {/* Content */}
         <div className="relative z-20">
           {/* Navigation */}
-          <nav className="flex justify-between items-center px-4 md:px-8 py-4 md:py-6">
-            <div className="flex items-center">
-              <Image
-                src="/SP - Logo1.png"
-                alt="Ship Paws"
-                width={120}
-                height={60}
-                className="object-contain w-20 md:w-[120px]"
-              />
-            </div>
-            
-            {/* Desktop Navigation */}
-            <div className="hidden lg:flex items-center gap-6 xl:gap-8">
-              <a href="#about" className="text-gray-800 hover:text-gray-600 font-semibold text-base xl:text-lg">
-                ABOUT
-              </a>
-              <a href="#how-it-works" className="text-gray-800 hover:text-gray-600 font-semibold text-base xl:text-lg">
-                HOW IT WORKS
-              </a>
-              <a href="#safety" className="text-gray-800 hover:text-gray-600 font-semibold text-base xl:text-lg">
-                SAFETY
-              </a>
-              <a href="/transporters" className="text-gray-800 hover:text-gray-600 font-semibold text-base xl:text-lg">
-                TRANSPORTERS
-              </a>
-              <button className="bg-red-500 text-white px-6 py-2 xl:px-8 xl:py-3 rounded-full hover:bg-red-600 transition-colors font-semibold text-base xl:text-lg">
-                GET A QUOTE
-              </button>
-            </div>
-
-            {/* Mobile Menu Button */}
-            <button
-              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="lg:hidden p-2 text-gray-800"
-            >
-              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                {mobileMenuOpen ? (
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                ) : (
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
-                )}
-              </svg>
-            </button>
-          </nav>
-
-          {/* Mobile Menu */}
-          {mobileMenuOpen && (
-            <div className="lg:hidden bg-white/95 backdrop-blur-sm absolute left-0 right-0 p-4 shadow-xl z-50">
-              <div className="flex flex-col space-y-4">
-                <a href="#about" onClick={() => setMobileMenuOpen(false)} className="text-gray-800 font-semibold text-lg py-2">ABOUT</a>
-                <a href="#how-it-works" onClick={() => setMobileMenuOpen(false)} className="text-gray-800 font-semibold text-lg py-2">HOW IT WORKS</a>
-                <a href="#safety" onClick={() => setMobileMenuOpen(false)} className="text-gray-800 font-semibold text-lg py-2">SAFETY</a>
-                <a href="/transporters" onClick={() => setMobileMenuOpen(false)} className="text-gray-800 font-semibold text-lg py-2">TRANSPORTERS</a>
-                <button onClick={() => setMobileMenuOpen(false)} className="bg-red-500 text-white px-6 py-3 rounded-full hover:bg-red-600 transition-colors font-semibold text-lg w-full">
-                  GET A QUOTE
-                </button>
-              </div>
-            </div>
-          )}
+          <Header />
 
           {/* Hero Section */}
-          <div className="flex flex-col items-center justify-end min-h-[calc(100vh-120px)] px-4 md:px-8 pb-16 md:pb-32">
+          <div className="flex flex-col items-center justify-start min-h-[calc(100vh-120px)] px-4 md:px-8 pt-20 md:pt-40">
             {/* Quote Form - Desktop */}
-            <div className="hidden md:block bg-white rounded-full shadow-2xl w-full max-w-7xl">
-              <div className="flex items-center">
-                <div className="flex-1 px-4 lg:px-8 py-4 lg:py-6 border-r border-gray-200">
-                  <label className="block text-sm lg:text-base font-bold text-gray-900 mb-1">Pickup Location</label>
-                  <input
-                    type="text"
-                    placeholder="Enter city or address"
-                    value={pickupLocation}
-                    onChange={(e) => setPickupLocation(e.target.value)}
-                    className="w-full text-gray-700 placeholder-gray-400 focus:outline-none text-sm lg:text-base"
-                  />
-                </div>
-                <div className="flex-1 px-4 lg:px-8 py-4 lg:py-6 border-r border-gray-200">
-                  <label className="block text-sm lg:text-base font-bold text-gray-900 mb-1">Delivery Location</label>
-                  <input
-                    type="text"
-                    placeholder="Enter city or address"
-                    value={deliveryLocation}
-                    onChange={(e) => setDeliveryLocation(e.target.value)}
-                    className="w-full text-gray-700 placeholder-gray-400 focus:outline-none text-sm lg:text-base"
-                  />
-                </div>
-                <div className="flex-1 px-4 lg:px-8 py-4 lg:py-6 border-r border-gray-200">
-                  <label className="block text-sm lg:text-base font-bold text-gray-900 mb-1">Pickup Date</label>
-                  <input
-                    type="date"
-                    value={pickupDate}
-                    onChange={(e) => setPickupDate(e.target.value)}
-                    className="w-full text-gray-700 placeholder-gray-400 focus:outline-none text-sm lg:text-base"
-                  />
-                </div>
-                <div className="flex-1 px-4 lg:px-8 py-4 lg:py-6">
-                  <label className="block text-sm lg:text-base font-bold text-gray-900 mb-1">Delivery Date</label>
-                  <input
-                    type="date"
-                    value={deliveryDate}
-                    onChange={(e) => setDeliveryDate(e.target.value)}
-                    className="w-full text-gray-700 placeholder-gray-400 focus:outline-none text-sm lg:text-base"
-                  />
-                </div>
-                <div className="pr-6">
-                  <button
-                    onClick={handleGetQuote}
-                    className="bg-red-500 text-white p-4 lg:p-5 rounded-full hover:bg-red-600 transition-colors shadow-lg"
-                  >
-                    <svg
-                      className="w-5 h-5 lg:w-7 lg:h-7"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
-                      />
-                    </svg>
-                  </button>
-                </div>
-              </div>
+            <div className="hidden md:block w-full max-w-5xl">
+              <QuoteRequestForm />
             </div>
 
             {/* Quote Form - Mobile */}
@@ -187,53 +51,7 @@ export default function Home() {
                 />
               </div>
               <p className="text-red-500 font-bold text-lg mb-6 text-center">Trusted Pet Transportation Nationwide</p>
-              <h3 className="text-xl font-bold text-gray-900 mb-4 text-center">Get a Quote</h3>
-              <div className="space-y-4">
-                <div>
-                  <label className="block text-sm font-bold text-gray-900 mb-1">Pickup Location</label>
-                  <input
-                    type="text"
-                    placeholder="Enter city or address"
-                    value={pickupLocation}
-                    onChange={(e) => setPickupLocation(e.target.value)}
-                    className="w-full px-4 py-3 rounded-lg border border-gray-300 text-gray-700 placeholder-gray-400 focus:outline-none focus:border-red-500"
-                  />
-                </div>
-                <div>
-                  <label className="block text-sm font-bold text-gray-900 mb-1">Delivery Location</label>
-                  <input
-                    type="text"
-                    placeholder="Enter city or address"
-                    value={deliveryLocation}
-                    onChange={(e) => setDeliveryLocation(e.target.value)}
-                    className="w-full px-4 py-3 rounded-lg border border-gray-300 text-gray-700 placeholder-gray-400 focus:outline-none focus:border-red-500"
-                  />
-                </div>
-                <div>
-                  <label className="block text-sm font-bold text-gray-900 mb-1">Pickup Date</label>
-                  <input
-                    type="date"
-                    value={pickupDate}
-                    onChange={(e) => setPickupDate(e.target.value)}
-                    className="w-full px-4 py-3 rounded-lg border border-gray-300 text-gray-700 placeholder-gray-400 focus:outline-none focus:border-red-500"
-                  />
-                </div>
-                <div>
-                  <label className="block text-sm font-bold text-gray-900 mb-1">Delivery Date</label>
-                  <input
-                    type="date"
-                    value={deliveryDate}
-                    onChange={(e) => setDeliveryDate(e.target.value)}
-                    className="w-full px-4 py-3 rounded-lg border border-gray-300 text-gray-700 placeholder-gray-400 focus:outline-none focus:border-red-500"
-                  />
-                </div>
-                <button
-                  onClick={handleGetQuote}
-                  className="w-full bg-red-500 text-white py-3 rounded-full hover:bg-red-600 transition-colors font-semibold text-lg"
-                >
-                  Get Quote
-                </button>
-              </div>
+              <QuoteRequestForm />
             </div>
           </div>
         </div>
